@@ -1,17 +1,23 @@
 {
   "compatibleVersion": 3,
   "bundleVersion": 1,
-  "commands": [
-    {
-      "name": "my-command",
-      "identifier": "my-command-identifier",
-      "script": "./my-command.js"
-    }
-  ],
+  "identifier": "de.dieploegers.units",
+  "commands": [{
+    "name": "Resize",
+    "identifier": "resize",
+    "script": "./commands/resize.js",
+    "handler": "onRun"
+  }, {
+    "name": "Settings",
+    "identifier": "settings",
+    "script": "./commands/settings.js",
+    "handler": "onRun"
+  }],
   "menu": {
-    "title": "units",
+    "title": "Units",
     "items": [
-      "my-command-identifier"
+      "resize",
+      "settings"
     ]
   }
 }

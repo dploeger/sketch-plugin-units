@@ -1,5 +1,10 @@
 {
-  "compatibleVersion": 3,
+  "name": "Units",
+  "description": "Resize a layer based on print units",
+  "author": "Dennis Ploeger",
+  "email": "develop@dieploegers.de",
+  "version": "1.0.0",
+  "compatibleVersion": "47.1",
   "bundleVersion": 1,
   "identifier": "de.dieploegers.units",
   "commands": [{

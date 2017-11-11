@@ -1,7 +1,11 @@
+/**
+ * The resize command
+ */
+
 import {
   createResizeDialog
 }
-from '../ui/dialog.js';
+from '../ui/resizeDialog.js';
 
 import {
   initVars
@@ -13,15 +17,20 @@ import {
 }
 from '../lib/calculate.js';
 
+/**
+ * The resize command
+ *
+ * @param context Sketch app context
+ */
 export default function onRun(context) {
-  var userDefaults = initVars(context);
+  initVars(context);
   let dpi = userDefaults.objectForKey('dpi');
   let unit = userDefaults.objectForKey('unit');
   let api = context.api();
   if (context.selection.length === 0) {
     context.api().alert('No selection', 'Please select an item.');
   } else {
-    let alert = createResizeDialog(context, userDefaults);
+    let alert = createResizeDialog(context);
     if (alert.alert.runModal() == '1000') {
       for (let i = 0; i < context.selection.length; i++) {
         let selected = context.selection[i];

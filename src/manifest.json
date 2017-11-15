@@ -4,6 +4,8 @@
   "author": "Dennis Ploeger",
   "email": "develop@dieploegers.de",
   "version": "1.0.0",
+  "homepage": "https://github.com/dploeger/sketch-plugin-units",
+  "appcast": "https://raw.githubusercontent.com/dploeger/sketch-plugin-units/master/appcast.xml",
   "compatibleVersion": "47.1",
   "bundleVersion": 1,
   "identifier": "de.dieploegers.units",

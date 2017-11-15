@@ -7,7 +7,7 @@
   "skpm": {
     "name": "units",
     "manifest": "src/manifest.json",
-    "main": "plugin.sketchplugin"
+    "main": "de.dieploegers.resize.sketchplugin"
   },
   "scripts": {
     "build": "skpm-build",

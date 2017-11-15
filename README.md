@@ -1,56 +1,27 @@
-# units
+# Units
 
-_This plugin was created using `skpm`. For a detailed explanation on how things work, checkout the [skpm Readme](https://github.com/skpm/skpm/blob/master/README.md)._
+Units is a [Sketch](https://https://sketchapp.com/) plugin for working with print units (inch, cm, mm) in Sketch's pixel world.
 
-## CLI Commands
+## Features
 
-``` bash
-# build with hot reload
-npm run watch
+* Calculates the print unit value from the pixel value for width and heights and back
+* Resizes one or more layers based on pixel unit values
 
-# build for production
-npm run build
-```
+## Manual Installation
 
-## Custom Configuration
+* Download the plugin and extract the archive
+* Double click on the de.dieploegers.sketchplugin file
 
-### Babel
+## Usage
 
-To customize Babel, you have two options:
+Use the settings dialog to set up your desired unit and the dpi value (see below).
 
-* You may create a [`.babelrc`](https://babeljs.io/docs/usage/babelrc) file in your project's root directory. Any settings you define here will overwrite matching config-keys within skpm preset. For example, if you pass a "presets" object, it will replace & reset all Babel presets that skpm defaults to.
+Then select a layer and use the resize command to either display the print unit value for its current size or resize it to a new value.
 
-* If you'd like to modify or add to the existing Babel config, you must use a `webpack.skpm.config.js` file. Visit the [Webpack](#webpack) section for more info.
+## DPI values
 
-### Webpack
+The DPI value (Dots Per Inch) is the main factor for converting pixels to print units and back.
 
-To customize webpack create `webpack.skpm.config.js` file which exports function that will change webpack's config.
+If you plan to export your design as a vector file (e.g. PDF) you should set it to 72, because that's Sketch's default value.
 
-```js
-/**
- * Function that mutates original webpack config.
- * Supports asynchronous changes when promise is returned.
- *
- * @param {object} config - original webpack config.
- * @param {boolean} isPluginCommand - wether the config is for a plugin command or a resource
- **/
-module.exports = function (config, isPluginCommand) {
-  /** you can change config here **/
-}
-```
-
-## Debugging
-
-To view the output of your `console.log`, you have a few different options:
-* Open `Console.app` and look for the sketch logs
-* Use Safari's web inspector to debug your plugin's javascript context
-* Look at the `~/Library/Logs/com.bohemiancoding.sketch3/Plugin Output.log` file
-
-Skpm provides a convenient way to do the latter:
-
-```bash
-skpm log
-```
-
-The `-f` option causes `skpm log` to not stop when the end of logs is reached, but rather to wait for additional data to be appended to the input
-
+On the other hand, if you plan to export to an image file, you can basically set this value to what you like, but for print it's usually 300.

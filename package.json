@@ -1,9 +1,10 @@
 {
   "name": "units",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "engines": {
     "sketch": ">=3.0"
   },
+  "repository": "https://github.com/dploeger/sketch-plugin-units",
   "skpm": {
     "name": "units",
     "manifest": "src/manifest.json",

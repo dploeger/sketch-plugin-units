@@ -9,7 +9,7 @@ Units is a [Sketch](https://https://sketchapp.com/) plugin for working with prin
 
 ## Manual Installation
 
-* Download the plugin and extract the archive
+* Download the plugin zip file from the [releases page](https://github.com/dploeger/sketch-plugin-units/releases) and extract the archive
 * Double click on the de.dieploegers.sketchplugin file
 
 ## Usage

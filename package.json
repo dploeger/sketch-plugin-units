@@ -1,6 +1,6 @@
 {
   "name": "units",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "engines": {
     "sketch": ">=3.0"
   },
@@ -8,7 +8,7 @@
   "skpm": {
     "name": "units",
     "manifest": "src/manifest.json",
-    "main": "de.dieploegers.resize.sketchplugin"
+    "main": "de.dieploegers.units.sketchplugin"
   },
   "scripts": {
     "build": "skpm-build",
@@ -18,6 +18,6 @@
     "postinstall": "npm run build && skpm-link"
   },
   "devDependencies": {
-    "@skpm/builder": "^0.2.0"
+    "@skpm/builder": "^0.2.12"
   }
 }

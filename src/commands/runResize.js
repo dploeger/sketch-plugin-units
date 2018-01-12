@@ -1,28 +1,28 @@
 /**
- * The resize command
+ * Plugin commands
  */
-
-import {
-  createResizeDialog
-}
-from '../ui/resizeDialog.js';
-
-import {
-  initVars
-}
-from '../base.js';
 
 import {
   calculate
 }
 from '../lib/calculate.js';
 
+import {
+  createSettingsDialog
+}
+from '../ui/settingsDialog.js';
+
+import {
+  initVars
+}
+from '../base.js';
+
 /**
  * The resize command
  *
  * @param context Sketch app context
  */
-export default function onRun(context) {
+export default function(context) {
   initVars(context);
   let dpi = userDefaults.objectForKey('dpi');
   let unit = userDefaults.objectForKey('unit');

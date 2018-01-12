@@ -10,7 +10,7 @@ export function calculate(value, dpi, unit) {
 
   var returnValue = value * dpi;
 
-  if (unit == "inch") {
+  if (unit == "inch" || unit == "other") {
     return Math.round(returnValue);
   }
 
@@ -38,7 +38,7 @@ export function calculateFromPixel(value, dpi, unit) {
   // calculate inch
   var returnValue = value / dpi;
 
-  if (unit == "inch") {
+  if (unit == "inch" || unit == "other") {
     return Math.round(returnValue);
   }
 

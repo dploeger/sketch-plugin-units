@@ -33,3 +33,14 @@ export function createDropdown(x, y, width, height, options) {
 
   return dropdown;
 }
+
+// export function createTable(x, y, width, height, delegate, datasource) {
+//   var table = NSTableView.alloc().initWithFrame(
+//     NSMakeRect(x, y, width, height)
+//   );
+//
+//   table.delegate = delegate
+//   table.dataSource = datasource
+//
+//   return table
+// }

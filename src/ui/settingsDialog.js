@@ -3,6 +3,11 @@
  */
 
 import {
+  MochaJSDelegate
+}
+from '../lib/MochaJSDelegate.js';
+
+import {
   calculate,
   calculateFromPixel
 }
@@ -42,21 +47,36 @@ export function createSettingsDialog(context) {
     viewHeight));
   alert.addAccessoryView(view);
 
+  // dataSource = new MochaJSDelegate()
+  // dataSource.setHandlerForSelector("numberOfRowsInTableView:", function(
+  //   tableView) {
+  //   return 10
+  // })
+  //
+  // delegate = new MochaJSDelegate()
+  // delegate.setHandlerForSelector("tableView:objectValueForTableColumn:row:",
+  //   function(tableView, column, row) {
+  //     return "hello"
+  //   })
+  //
+  // view.addSubview(createTable(0, 0, 100, 20, delegate, dataSource))
+
   view.addSubview(createLabel(0, viewHeight - 20, 100, 20, "Unit"));
   let unitDropDown = createDropdown(100, viewHeight - 20, 150, 20, ["inch",
     "cm",
-    "mm"
+    "mm",
+    "other"
   ]);
   unitDropDown.selectItemWithTitle(userDefaults.objectForKey('unit'));
   view.addSubview(unitDropDown);
 
-  view.addSubview(createLabel(0, viewHeight - 40, 100, 20, "DPI"));
+  view.addSubview(createLabel(0, viewHeight - 40, 100, 20, "Scale"));
   let dpiInput = createInput(100, viewHeight - 40, 150, 20, userDefaults.objectForKey(
     'dpi'));
   view.addSubview(dpiInput);
 
   let dpiHint = createLabel(0, viewHeight - 100, 300, 60,
-    "Hint: If you want to export a vector file (e.g. PDF), set this to 72. If you're exporting to an image, set it to 300."
+    "Hint: Common values are 72 for a PDF or 300 for a print-ready image."
   );
   dpiHint.textColor = NSColor.colorWithGray(0.5);
   view.addSubview(dpiHint);

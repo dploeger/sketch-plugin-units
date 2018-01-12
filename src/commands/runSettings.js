@@ -1,10 +1,7 @@
-/**
- * The settings command
- */
 import {
-  createSettingsDialog
+  createResizeDialog
 }
-from '../ui/settingsDialog.js';
+from '../ui/resizeDialog.js';
 
 import {
   initVars
@@ -15,7 +12,7 @@ from '../base.js';
  * Open the settings dialog
  * @param context The Sketch app context
  */
-export default function onRun(context) {
+export default function(context) {
   initVars(context);
   let dialog = createSettingsDialog(context, userDefaults);
   let response = dialog.alert.runModal();

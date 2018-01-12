@@ -1,9 +1,9 @@
 {
   "name": "Units",
-  "description": "Resize a layer based on print units",
+  "description": "Unit conversion for Sketch",
   "author": "Dennis Ploeger",
   "email": "develop@dieploegers.de",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "homepage": "https://github.com/dploeger/sketch-plugin-units",
   "appcast": "https://raw.githubusercontent.com/dploeger/sketch-plugin-units/master/appcast.xml",
   "compatibleVersion": "47.1",
@@ -11,20 +11,18 @@
   "identifier": "de.dieploegers.units",
   "commands": [{
     "name": "Resize",
-    "identifier": "resize",
-    "script": "./commands/resize.js",
-    "handler": "onRun"
+    "identifier": "de.dieploegers.units.resize",
+    "script": "commands/runResize.js"
   }, {
     "name": "Settings",
-    "identifier": "settings",
-    "script": "./commands/settings.js",
-    "handler": "onRun"
+    "identifier": "de.dieploegers.units.settings",
+    "script": "commands/runSettings.js"
   }],
   "menu": {
     "title": "Units",
     "items": [
-      "resize",
-      "settings"
+      "de.dieploegers.units.resize",
+      "de.dieploegers.units.settings"
     ]
   }
 }

@@ -1,28 +1,18 @@
 {
-  "name": "Units",
-  "description": "Unit conversion for Sketch",
-  "author": "Dennis Ploeger",
-  "email": "develop@dieploegers.de",
-  "version": "2.0.0",
-  "homepage": "https://github.com/dploeger/sketch-plugin-units",
-  "appcast": "https://raw.githubusercontent.com/dploeger/sketch-plugin-units/master/appcast.xml",
-  "compatibleVersion": "47.1",
+  "compatibleVersion": 3,
   "bundleVersion": 1,
-  "identifier": "de.dieploegers.units",
-  "commands": [{
-    "name": "Resize",
-    "identifier": "de.dieploegers.units.resize",
-    "script": "commands/runResize.js"
-  }, {
-    "name": "Settings",
-    "identifier": "de.dieploegers.units.settings",
-    "script": "commands/runSettings.js"
-  }],
+  "icon": "icon.png",
+  "commands": [
+    {
+      "name": "my-command",
+      "identifier": "units.my-command-identifier",
+      "script": "./my-command.js"
+    }
+  ],
   "menu": {
-    "title": "Units",
+    "title": "units",
     "items": [
-      "de.dieploegers.units.resize",
-      "de.dieploegers.units.settings"
+      "units.my-command-identifier"
     ]
   }
 }

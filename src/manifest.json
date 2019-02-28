@@ -1,18 +1,26 @@
 {
+  "name": "Units",
+  "author": "Dennis Ploeger <develop@dieploegers.de>",
+  "description": "Units",
+  "identifier": "de.dieploegers.sketch.units",
+  "version": "2.0.0",
   "compatibleVersion": 3,
   "bundleVersion": 1,
   "icon": "icon.png",
   "commands": [
     {
-      "name": "my-command",
-      "identifier": "units.my-command-identifier",
-      "script": "./my-command.js"
+      "name": "Resize",
+      "identifier": "units.resize",
+      "script": "./commands/resize.js"
+    },
+    {
+      "name": "Settings",
+      "identifier": "units.settings",
+      "script": "./commands/settings.js"
     }
   ],
   "menu": {
-    "title": "units",
-    "items": [
-      "units.my-command-identifier"
-    ]
+    "title": "Units",
+    "items": ["units.resize", "units.settings"]
   }
 }

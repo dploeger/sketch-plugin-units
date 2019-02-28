@@ -27,8 +27,9 @@ export default function() {
   /**
    * Save settings
    */
-  browserWindow.webContents.on("saveSettings", function(items) {
-    Settings.setSettingForKey("units", items);
+  browserWindow.webContents.on("saveSettings", function(settings) {
+    Settings.setSettingForKey("units", settings.units);
+    Settings.setSettingForKey("defaultUnit", settings.defaultUnit);
     browserWindow.close();
   });
 
@@ -41,12 +42,20 @@ export default function() {
    * Load the existing units
    */
   if (Settings.settingForKey("units")) {
-    Settings.settingForKey("units").forEach(function(unit) {
-      browserWindow.webContents.executeJavaScript(
-        "addUnit(" + JSON.stringify(unit) + ")"
-      );
-    });
+    browserWindow.webContents.executeJavaScript(
+      `setUnits(${JSON.stringify(Settings.settingForKey("units"))})`
+    );
   }
+
+  if (!Settings.settingForKey("defaultUnit")) {
+    Settings.setSettingForKey("defaultUnit", "_last");
+  }
+
+  browserWindow.webContents.executeJavaScript(
+    `setDefaultUnit('${Settings.settingForKey("defaultUnit")}')`
+  );
+
+  browserWindow.webContents.executeJavaScript("redrawUI()");
 
   browserWindow.once("ready-to-show", () => {
     browserWindow.show();

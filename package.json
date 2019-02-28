@@ -23,6 +23,7 @@
   },
   "author": "Dennis Ploeger <develop@dieploegers.de>",
   "dependencies": {
-    "sketch-module-web-view": "^2.1.6"
+    "sketch-module-web-view": "^2.1.6",
+    "prettier": "1.16.4"
   }
 }

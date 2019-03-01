@@ -9,7 +9,8 @@
     "manifest": "src/manifest.json",
     "main": "units.sketchplugin",
     "assets": [
-      "assets/**/*"
+      "assets/**/*",
+      "ui/**/*"
     ]
   },
   "scripts": {

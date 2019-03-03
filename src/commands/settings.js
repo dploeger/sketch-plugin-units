@@ -33,27 +33,27 @@ export default function() {
     browserWindow.close()
   })
 
-  /**
-   * Hide the error message on startup
-   */
-  browserWindow.webContents.executeJavaScript('hideErrorMessage()')
-
-  /**
-   * Load the existing units
-   */
-  if (Settings.settingForKey('units')) {
-    browserWindow.webContents.executeJavaScript(`setUnits(${JSON.stringify(Settings.settingForKey('units'))})`)
-  }
-
-  if (!Settings.settingForKey('defaultUnit')) {
-    Settings.setSettingForKey('defaultUnit', '_last')
-  }
-
-  browserWindow.webContents.executeJavaScript(`setDefaultUnit('${Settings.settingForKey('defaultUnit')}')`)
-
-  browserWindow.webContents.executeJavaScript('redrawUI()')
-
   browserWindow.once('ready-to-show', () => {
     browserWindow.show()
+
+    /**
+     * Hide the error message on startup
+     */
+    browserWindow.webContents.executeJavaScript('hideErrorMessage()')
+
+    /**
+     * Load the existing units
+     */
+    if (Settings.settingForKey('units')) {
+      browserWindow.webContents.executeJavaScript(`setUnits(${JSON.stringify(Settings.settingForKey('units'))})`)
+    }
+
+    // if (!Settings.settingForKey('defaultUnit')) {
+    //   Settings.setSettingForKey('defaultUnit', '_last')
+    // }
+
+    // browserWindow.webContents.executeJavaScript(`setDefaultUnit('${Settings.settingForKey('defaultUnit')}')`)
+
+    // browserWindow.webContents.executeJavaScript('redrawUI()')
   })
 }

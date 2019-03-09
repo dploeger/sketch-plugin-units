@@ -21,7 +21,7 @@
 
     <title>Resize layer</title>
 
-    <script type="text/JavaScript" src="js/resize-view.js"></script>
+    <script type="text/JavaScript" src="../js/resize-view.js"></script>
   </head>
 
   <body>
@@ -40,6 +40,39 @@
           </button>
         </div>
         <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="unit">Unit</label>
+              <select id="unit" class="custom-select" aria-describedby="unitHelp"> </select>
+              <small id="unitHelp" class="form-text text-muted">Select the unit to convert in.</small>
+            </div>
+            <div class="row">
+              <div class="col-5">
+                <label for="width">Width</label>
+                <input type="number" class="form-control" id="width" aria-describedby="widthHelp" placeholder="Width" />
+                <small id="widthHelp" class="form-text text-muted">Enter the width in the selected unit.</small>
+              </div>
+              <div class="col-5">
+                <label for="height">Height</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="height"
+                  aria-describedby="heightHelp"
+                  placeholder="Height"
+                />
+                <small id="heightHelp" class="form-text text-muted">Enter the height in the selected unit.</small>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="keep" id="keepAspectRatio" />
+                  <label class="form-check-label" for="keepAspectRatio">
+                    Keep aspect ratio
+                  </label>
+                </div>
+              </div>
+            </div>
+          </form>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary btn-sm" onclick="window.postMessage('closeView')">
               Cancel

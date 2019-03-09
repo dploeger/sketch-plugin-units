@@ -33,7 +33,7 @@ export default function() {
     browserWindow.close()
   })
 
-  browserWindow.webContents.on('dom-ready', () => {
+  browserWindow.webContents.on('did-finish-load', () => {
     /**
      * Hide the error message on startup
      */

@@ -33,9 +33,7 @@ export default function() {
     browserWindow.close()
   })
 
-  browserWindow.once('ready-to-show', () => {
-    browserWindow.show()
-
+  browserWindow.webContents.on('dom-ready', () => {
     /**
      * Hide the error message on startup
      */
@@ -48,12 +46,16 @@ export default function() {
       browserWindow.webContents.executeJavaScript(`setUnits(${JSON.stringify(Settings.settingForKey('units'))})`)
     }
 
-    // if (!Settings.settingForKey('defaultUnit')) {
-    //   Settings.setSettingForKey('defaultUnit', '_last')
-    // }
+    if (!Settings.settingForKey('defaultUnit')) {
+      Settings.setSettingForKey('defaultUnit', '_last')
+    }
 
-    // browserWindow.webContents.executeJavaScript(`setDefaultUnit('${Settings.settingForKey('defaultUnit')}')`)
+    browserWindow.webContents.executeJavaScript(`setDefaultUnit('${Settings.settingForKey('defaultUnit')}')`)
 
-    // browserWindow.webContents.executeJavaScript('redrawUI()')
+    browserWindow.webContents.executeJavaScript('redrawUI()')
+  })
+
+  browserWindow.once('ready-to-show', () => {
+    browserWindow.show()
   })
 }

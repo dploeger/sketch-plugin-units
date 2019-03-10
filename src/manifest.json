@@ -7,6 +7,7 @@
   "compatibleVersion": 3,
   "bundleVersion": 1,
   "icon": "icon.png",
+  "scope": "application",
   "commands": [
     {
       "name": "Resize",

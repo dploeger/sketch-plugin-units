@@ -6,34 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-
-    <!-- OpenIconic -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css"
-    />
+    <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css" />
 
     <title>Sketch Units Settings</title>
 
+    <script type="text/JavaScript" src="../js/common.js"></script>
     <script type="text/JavaScript" src="../js/settings-view.js"></script>
   </head>
 
   <body>
     <div class="modal" tabindex="-1" role="dialog" id="editWindow">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-dialog-centered" role="document" style="margin-top: 2px">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Unit Editor</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
           <div class="modal-body">
             <form id="unitEditorForm">
               <div class="form-group">
@@ -79,6 +63,20 @@
                   cm)</small
                 >
               </div>
+              <div class="form-group">
+                <label for="precision">Precision</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="precision"
+                  aria-describedby="precisionHelp"
+                  placeholder="Enter precision"
+                  required
+                />
+                <small id="precisionHelp" class="form-text text-muted"
+                  >Enter the precision (decimal places) to round to for this unit</small
+                >
+              </div>
             </form>
           </div>
           <div class="modal-footer">
@@ -96,82 +94,62 @@
       </div>
     </div>
     <div class="container-fluid" style="padding:0">
-      <div class="modal-content" style="height: 600px">
-        <div class="modal-header">
-          <h5 class="modal-title">Sketch Units Settings</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-            onclick="window.postMessage('closeSettings')"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+      <div class="modal-content">
         <div class="modal-body">
-          <div id="errorMessage" class="alert alert-danger" role="alert"></div>
-          <h3>Available units</h3>
-          <p>
-            This is the list of available units, that the unit plugin can convert between.
-          </p>
-          <p>
-            Every unit needs a DPI value, that is the base of the conversion the plugin is doing and a conversion factor
-            to calculate the unit based on an inch value.
-          </p>
-          <div style="width: 100%; height: 150px; overflow-y: scroll">
-            <table id="unitsTable" class="table table-striped table-hover">
-              <thead class="thead-dark table-sm">
-                <tr>
-                  <th scope="col">Unit</th>
-                  <th scope="col">DPI</th>
-                  <th scope="col">Factor</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-          <button type="button" onclick="openNewUnitEditor()" class="btn btn-secondary btn-sm">
-            <span class="oi oi-plus" title="+" aria-hidden="true"></span>
-          </button>
-          <h3>Default unit</h3>
-          <div class="form-group">
-            <label for="defaultUnitSelect">Select the unit that should be preselected in the resize dialog</label>
-            <select
-              class="form-control form-control-sm"
-              id="defaultUnitSelect"
-              onchange="window.setDefaultUnit(this.value)"
+          <form>
+            <div id="errorMessage" class="alert alert-danger" role="alert"></div>
+            <h3>Available units</h3>
+            <p>
+              This is the list of available units, that the unit plugin can convert between.
+            </p>
+            <p>
+              Every unit needs a DPI value, that is the base of the conversion the plugin is doing and a conversion
+              factor to calculate the unit based on an inch value.
+            </p>
+            <div style="width: 100%; height: 150px; overflow-y: scroll">
+              <table id="unitsTable" class="table table-striped table-hover">
+                <thead class="thead-dark table-sm">
+                  <tr>
+                    <th scope="col">Unit</th>
+                    <th scope="col">DPI</th>
+                    <th scope="col">Factor</th>
+                    <th scope="col">Precision</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <button
+              type="button"
+              onclick="openNewUnitEditor()"
+              class="btn btn-primary btn-sm"
+              style="margin-top: 1em; margin-bottom: 1em"
             >
-            </select>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary btn-sm" onclick="window.postMessage('closeSettings')">
-              Cancel
+              Add unit
             </button>
-            <button type="button" class="btn btn-primary btn-sm" onclick="saveSettings()">
-              Ok
-            </button>
-          </div>
+            <h3>Default unit</h3>
+            <div class="form-group">
+              <label for="defaultUnitSelect">Select the unit that should be preselected in the resize dialog</label>
+              <select class="custom-select" id="defaultUnitSelect" onchange="window.setDefaultUnit(this.value)">
+                <option>null</option>
+              </select>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="window.postMessage('closeSettings')">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-primary" onclick="saveSettings()">
+            Ok
+          </button>
         </div>
       </div>
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
+    <script src="../jquery-slim/dist/jquery.slim.min.js"></script>
+    <script src="../popper.js-lite/dist/umd/popper.min.js"></script>
+    <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
   </body>
 </html>

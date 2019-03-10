@@ -9,8 +9,8 @@ var Settings = require('sketch/settings')
 export default function() {
   const options = {
     identifier: 'units.settingsView',
-    frame: false,
     show: false,
+    height: 606
   }
 
   const browserWindow = new BrowserWindow(options)

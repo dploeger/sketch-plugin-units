@@ -1,14 +1,6 @@
 /* Bridges used by the plugin */
 
-let units = {}
 let defaultUnit = '_last'
-
-/**
- * Set the available units
- */
-window.setUnits = function(pUnits) {
-  units = pUnits
-}
 
 /**
  * Set the default unit
@@ -37,10 +29,12 @@ window.redrawUI = () => {
     unitRow.data('unitName', unit.unitName)
     unitRow.data('dpi', unit.dpi)
     unitRow.data('factor', unit.factor)
+    unitRow.data('precision', unit.precision)
 
     unitRow.append(`<td class="unitName">${unit.unitName}</td>`)
     unitRow.append(`<td class="dpi">${unit.dpi}</td>`)
     unitRow.append(`<td class="factor">${unit.factor}</td>`)
+    unitRow.append(`<td class="precision">${unit.precision}</td>`)
 
     $('#unitsTable tbody').append(unitRow)
   }
@@ -119,6 +113,7 @@ openNewUnitEditor = function() {
     .focus()
   $('#dpi').val('')
   $('#factor').val('')
+  $('#precision').val(2)
 
   // Hide delete button for new units
   $('#unitEditorDelete').hide()
@@ -139,6 +134,7 @@ openNewUnitEditor = function() {
         unitName: $('#unitName').val(),
         dpi: $('#dpi').val(),
         factor: $('#factor').val(),
+        precision: $('#precision').val()
       }
       $('#editWindow').modal('hide')
       redrawUI()
@@ -167,13 +163,15 @@ openEditUnitEditor = function(unitRow) {
     .focus()
   $('#dpi').val(unitRow.data('dpi'))
   $('#factor').val(unitRow.data('factor'))
+  $('#precision').val(unitRow.data('precision'))
 
   // React to delete action
   $('#unitEditorDelete')
     .show()
     .click(function() {
       $('#editWindow').modal('hide')
-      $(unitRow).remove()
+      delete(units[originalUnitName])
+      redrawUI()
     })
   $('#unitEditorOk').click(function() {
     // Validate form
@@ -192,6 +190,7 @@ openEditUnitEditor = function(unitRow) {
         unitName: $('#unitName').val(),
         dpi: $('#dpi').val(),
         factor: $('#factor').val(),
+        precision: $('#precision').val()
       }
       redrawUI()
       $('#editWindow').modal('hide')

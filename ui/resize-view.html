@@ -6,101 +6,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-
-    <!-- OpenIconic -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css"
-    />
+    <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css" />
 
     <title>Resize layer</title>
+    <script src="../decimal.js-light/decimal.min.js"></script>
 
+    <script type="text/JavaScript" src="../js/common.js"></script>
     <script type="text/JavaScript" src="../js/resize-view.js"></script>
   </head>
 
   <body>
     <div class="container-fluid" style="padding:0">
-      <div class="modal-content" style="height: 600px">
-        <div class="modal-header">
-          <h5 class="modal-title">Resize</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-            onclick="window.postMessage('closeView')"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+      <div class="modal-content">
         <div class="modal-body">
-          <form>
+          <form id="resizeForm">
             <div class="form-group">
-              <label for="unit">Unit</label>
-              <select id="unit" class="custom-select" aria-describedby="unitHelp"> </select>
+              <label for="unitSelect">Unit</label>
+              <select id="unitSelect" class="custom-select" aria-describedby="unitHelp" onchange="setUnit(this.value)">
+              </select>
               <small id="unitHelp" class="form-text text-muted">Select the unit to convert in.</small>
             </div>
             <div class="row">
-              <div class="col-5">
-                <label for="width">Width</label>
-                <input type="number" class="form-control" id="width" aria-describedby="widthHelp" placeholder="Width" />
+              <div class="col-6">
+                <label for="width">Width<span id="pixelWidth" class="badge badge-pill badge-light"></span></label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="width"
+                  aria-describedby="widthHelp"
+                  placeholder="Width"
+                  onchange="setWidth(this.value)"
+                />
                 <small id="widthHelp" class="form-text text-muted">Enter the width in the selected unit.</small>
               </div>
-              <div class="col-5">
-                <label for="height">Height</label>
+              <div class="col-6">
+                <label for="height">Height<span id="pixelHeight" class="badge badge-pill badge-light"></span></label>
                 <input
                   type="number"
                   class="form-control"
                   id="height"
                   aria-describedby="heightHelp"
                   placeholder="Height"
+                  onchange="setHeight(this.value)"
                 />
                 <small id="heightHelp" class="form-text text-muted">Enter the height in the selected unit.</small>
               </div>
-              <div class="col">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="keep" id="keepAspectRatio" />
-                  <label class="form-check-label" for="keepAspectRatio">
-                    Keep aspect ratio
-                  </label>
-                </div>
-              </div>
+            </div>
+            <div class="form-check" style="padding-top: 1em">
+              <input class="form-check-input" type="checkbox" checked value="keep" id="keepAspectRatio" />
+              <label class="form-check-label" for="keepAspectRatio">
+                Keep aspect ratio
+              </label>
             </div>
           </form>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary btn-sm" onclick="window.postMessage('closeView')">
-              Cancel
-            </button>
-            <button type="button" class="btn btn-primary btn-sm" onclick="apply()">
-              Ok
-            </button>
-          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="window.postMessage('closeView')">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-primary" onclick="doResize()">
+            Ok
+          </button>
         </div>
       </div>
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
+    <script src="../jquery-slim/dist/jquery.slim.min.js"></script>
+    <script src="../popper.js-lite/dist/umd/popper.min.js"></script>
+    <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
   </body>
 </html>

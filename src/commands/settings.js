@@ -3,10 +3,11 @@ import BrowserWindow from 'sketch-module-web-view'
 var Settings = require('sketch/settings')
 
 /**
- * Use BrowserWindow to show the settings UI
+ * Units plugin settings
  */
+export default () => {
+  // Setup BrowserWindow
 
-export default function() {
   const options = {
     identifier: 'units.settingsView',
     show: false,
@@ -20,17 +21,21 @@ export default function() {
   /**
    * Close window on UI clicks
    */
-  browserWindow.webContents.on('closeSettings', function(s) {
+  browserWindow.webContents.on('closeSettings', () => {
     browserWindow.close()
   })
 
   /**
    * Save settings
    */
-  browserWindow.webContents.on('saveSettings', function(settings) {
+  browserWindow.webContents.on('saveSettings', settings => {
     Settings.setSettingForKey('units', settings.units)
     Settings.setSettingForKey('defaultUnit', settings.defaultUnit)
     browserWindow.close()
+  })
+
+  browserWindow.once('ready-to-show', () => {
+    browserWindow.show()
   })
 
   browserWindow.webContents.on('did-finish-load', () => {
@@ -53,6 +58,8 @@ export default function() {
     }
     browserWindow.webContents.executeJavaScript(`setUnits(${JSON.stringify(Settings.settingForKey('units'))})`)
 
+    // Set the default unit
+
     if (!Settings.settingForKey('defaultUnit')) {
       Settings.setSettingForKey('defaultUnit', '_last')
     }
@@ -60,9 +67,5 @@ export default function() {
     browserWindow.webContents.executeJavaScript(`setDefaultUnit('${Settings.settingForKey('defaultUnit')}')`)
 
     browserWindow.webContents.executeJavaScript('redrawUI()')
-  })
-
-  browserWindow.once('ready-to-show', () => {
-    browserWindow.show()
   })
 }

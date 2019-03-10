@@ -3,7 +3,7 @@
   "author": "Dennis Ploeger <develop@dieploegers.de>",
   "description": "Units",
   "identifier": "de.dieploegers.sketch.units",
-  "version": "2.0.0",
+  "version": "2.0.0-beta",
   "compatibleVersion": 3,
   "bundleVersion": 1,
   "icon": "icon.png",
@@ -18,10 +18,17 @@
       "name": "Settings",
       "identifier": "units.settings",
       "script": "./commands/settings.js"
+    },
+    {
+      "name": "Show Size",
+      "identifier": "units.showSize",
+      "script": "./commands/showSize.js",
+      "shortcut": "ctrl shift s"
     }
   ],
+  
   "menu": {
-    "title": "Units",
-    "items": ["units.resize", "units.settings"]
+    "title": "📏Units",
+    "items": ["units.resize", "units.settings", "units.showSize"]
   }
 }

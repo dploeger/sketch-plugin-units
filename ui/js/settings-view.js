@@ -1,11 +1,14 @@
-/* Bridges used by the plugin */
+/**
+ * Settings view functions
+ */
 
 let defaultUnit = '_last'
 
 /**
  * Set the default unit
+ * @param {string} pDefaultUnit Unit to set
  */
-window.setDefaultUnit = function(pDefaultUnit) {
+window.setDefaultUnit = pDefaultUnit => {
   defaultUnit = pDefaultUnit
 }
 
@@ -61,8 +64,9 @@ window.redrawUI = () => {
 
 /**
  * Show an error message
+ * @param {string} message Error message
  */
-window.showErrorMessage = function(message) {
+window.showErrorMessage = message => {
   $('#errorMessage').html(message)
   $('#errorMessage').show()
 }
@@ -70,18 +74,17 @@ window.showErrorMessage = function(message) {
 /**
  * Hide the error message alert
  */
-window.hideErrorMessage = function() {
+window.hideErrorMessage = () => {
   $('#errorMessage').hide()
 }
 
 /**
- * UI handling
+ * Check the unit editor form for validity
  */
-
-checkFormValidity = function() {
+checkFormValidity = () => {
   return $('input', '#unitEditorForm')
     .toArray()
-    .reduce(function(isValid, item) {
+    .reduce((isValid, item) => {
       if (item.id === 'unitName') {
         if (units.hasOwnProperty(item.value)) {
           isValid = false
@@ -98,11 +101,11 @@ checkFormValidity = function() {
 /**
  * Open the unit editor to add a new unit
  */
-openNewUnitEditor = function() {
+openNewUnitEditor = () => {
   $('#editWindow').modal()
 
   // Remove event triggers on modal hide
-  $('#editWindow').on('hidden.bs.modal', function() {
+  $('#editWindow').on('hidden.bs.modal', () => {
     $('#unitEditorOk').off()
   })
 
@@ -118,7 +121,7 @@ openNewUnitEditor = function() {
   // Hide delete button for new units
   $('#unitEditorDelete').hide()
 
-  $('#unitEditorOk').click(function() {
+  $('#unitEditorOk').click(() => {
     // Validate form
     var isFormValid = checkFormValidity()
     if (isFormValid === false) {
@@ -146,13 +149,13 @@ openNewUnitEditor = function() {
  * Open the unit editor to modify an existing unit
  * @param {Object} unitRow the table row holding the existing unit
  */
-openEditUnitEditor = function(unitRow) {
+openEditUnitEditor = unitRow => {
   const originalUnitName = unitRow.data('unitName')
   $('#editWindow').modal()
 
   // Remove event triggers on modal hide
 
-  $('#editWindow').on('hidden.bs.modal', function() {
+  $('#editWindow').on('hidden.bs.modal', () => {
     $('#unitEditorOk').off()
     $('#unitEditorDelete').off()
   })
@@ -168,12 +171,12 @@ openEditUnitEditor = function(unitRow) {
   // React to delete action
   $('#unitEditorDelete')
     .show()
-    .click(function() {
+    .click(() => {
       $('#editWindow').modal('hide')
       delete(units[originalUnitName])
       redrawUI()
     })
-  $('#unitEditorOk').click(function() {
+  $('#unitEditorOk').click(() => {
     // Validate form
     var isFormValid = checkFormValidity()
     if (isFormValid === false) {
@@ -201,6 +204,6 @@ openEditUnitEditor = function(unitRow) {
 /**
  * Call the plugin to store the current settings
  */
-saveSettings = function() {
+saveSettings = () => {
   window.postMessage('saveSettings', { units: units, defaultUnit: defaultUnit })
 }

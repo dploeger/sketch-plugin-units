@@ -10,7 +10,7 @@ export default function() {
   const options = {
     identifier: 'units.settingsView',
     show: false,
-    height: 606
+    height: 606,
   }
 
   const browserWindow = new BrowserWindow(options)
@@ -42,9 +42,16 @@ export default function() {
     /**
      * Load the existing units
      */
-    if (Settings.settingForKey('units')) {
-      browserWindow.webContents.executeJavaScript(`setUnits(${JSON.stringify(Settings.settingForKey('units'))})`)
+    if (!Settings.settingForKey('units')) {
+      // Set default units
+      Settings.setSettingForKey('units', {
+        'cm (PDF)': { unitName: 'cm (PDF)', dpi: '72', factor: '2.54', precision: '2' },
+        'cm (Image)': { unitName: 'cm (Image)', dpi: '300', factor: '2.54', precision: '2' },
+        'Inch (Image)': { unitName: 'Inch (Image)', dpi: '300', factor: '1', precision: '2' },
+        'Inch (PDF)': { unitName: 'Inch (PDF)', dpi: '72', factor: '1', precision: '2' },
+      })
     }
+    browserWindow.webContents.executeJavaScript(`setUnits(${JSON.stringify(Settings.settingForKey('units'))})`)
 
     if (!Settings.settingForKey('defaultUnit')) {
       Settings.setSettingForKey('defaultUnit', '_last')

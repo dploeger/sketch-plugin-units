@@ -19,7 +19,7 @@ window.redrawUI = () => {
   $('#unitsTable .unitRow').remove()
   $('#defaultUnitSelect option').remove()
 
-  // Redraw the metric table
+  // Redraw the unit table
 
   for (let unitName of Object.keys(units).sort()) {
     const unit = units[unitName]
@@ -42,7 +42,7 @@ window.redrawUI = () => {
     $('#unitsTable tbody').append(unitRow)
   }
 
-  // Redraw the default metric selection
+  // Redraw the default unit selection
   for (let unitName of ['_none', '_last'].concat(Object.keys(units))) {
     let description = unitName
 

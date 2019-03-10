@@ -14,9 +14,32 @@ Units is a [Sketch](https://https://sketchapp.com/) plugin for working with prin
 
 ## Usage
 
-Use the settings dialog to set up your desired unit and the dpi value (see below).
+### Settings
 
-Then select a layer and use the resize command to either display the print unit value for its current size or resize it to a new value.
+Use the settings dialog to manage the available units. For each unit, you need to define a name, a DPI value, a factor to convert from inch to your desired unit and a precision number.
+
+![Settings-Dialog](assets/settings.png)
+
+Also, select a default unit, that will be used when resizing a layer or showing its size.
+
+These units come with the plugin itself:
+
+  * Inch (Image): Inches, when the layer will be exported to an image
+  * Inch (PDF): Inches, when the layer will be exported to a PDF
+  * cm (Image): Centimeters, when the layer will be exported to an image
+  * cm (PDF): Centimeters, when the layer will be exported to a PDF
+
+### Resize a layer
+
+Select a layer and run the "Resize" command from the plugin menu.
+
+![The resize dialog](assets/resize.png)
+
+Here you can enter the desired size in the selected unit. Hit Ok to resize the layer accordingly.
+
+### Show size
+
+To quickly show the size of a layer in your selected default unit, select the "Show Size" command from the plugin menu or hit `Ctrl Shift S`.
 
 ## DPI values
 

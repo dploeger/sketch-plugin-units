@@ -81,12 +81,12 @@ window.hideErrorMessage = () => {
 /**
  * Check the unit editor form for validity
  */
-checkFormValidity = () => {
+checkFormValidity = (originalUnitName) => {
   return $('input', '#unitEditorForm')
     .toArray()
     .reduce((isValid, item) => {
       if (item.id === 'unitName') {
-        if (units.hasOwnProperty(item.value)) {
+        if (item.value != originalUnitName && units.hasOwnProperty(item.value)) {
           isValid = false
           item.setCustomValidity('Name already exists')
         }
@@ -178,7 +178,7 @@ openEditUnitEditor = unitRow => {
     })
   $('#unitEditorOk').click(() => {
     // Validate form
-    var isFormValid = checkFormValidity()
+    var isFormValid = checkFormValidity(originalUnitName)
     if (isFormValid === false) {
       // Mimic a form submit to trigger form validation messages
       $('<input type="submit">')

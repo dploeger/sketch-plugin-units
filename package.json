@@ -25,7 +25,7 @@
     "postinstall": "npm run build && skpm-link"
   },
   "devDependencies": {
-    "@skpm/builder": "^0.5.11"
+    "@skpm/builder": "^0.5.16"
   },
   "repository": {
     "type": "git",
@@ -33,11 +33,11 @@
   },
   "author": "Dennis Ploeger <develop@dieploegers.de>",
   "dependencies": {
-    "sketch-module-web-view": "^2.1.6",
-    "prettier": "1.16.4",
     "bootstrap-4": "4.0.0",
+    "decimal.js-light": "2.5.0",
     "jquery-slim": "3.0.0",
     "popper.js-lite": "2.0.0-rc.1",
-    "decimal.js-light": "2.5.0"
+    "prettier": "1.16.4",
+    "sketch-module-web-view": "^2.1.7"
   }
 }

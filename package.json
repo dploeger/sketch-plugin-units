@@ -38,6 +38,6 @@
     "jquery-slim": "3.0.0",
     "popper.js-lite": "2.0.0-rc.1",
     "prettier": "1.16.4",
-    "sketch-module-web-view": "^2.1.7"
+    "sketch-module-web-view": "^3.2.2"
   }
 }

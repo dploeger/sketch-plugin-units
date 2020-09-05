@@ -16,6 +16,10 @@ window.setUnit = pUnit => {
   calculateSize()
 }
 
+window.storeKeepAspectRatio = checked => {
+  window.postMessage('storeKeepAspectRatio', checked)
+}
+
 /**
  * Set the pixel width
  */
@@ -69,6 +73,14 @@ getCurrentUnit = () => {
   } else {
     return units[unit]
   }
+}
+
+/**
+ * Set the checked state of the "keep aspect ratio" field
+ * @param checked
+ */
+setKeepAspectRatioSelected = (checked) => {
+  $('#keepAspectRatio').get(0).checked = checked
 }
 
 /**

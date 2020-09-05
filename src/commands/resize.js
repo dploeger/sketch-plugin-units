@@ -50,11 +50,26 @@ export default function () {
     Settings.setSettingForKey('lastUnit', unit)
   })
 
+  browserWindow.webContents.on('storeKeepAspectRatio', checked => {
+    Settings.setSettingForKey('keepAspectRatio', checked)
+  })
+
   browserWindow.once('ready-to-show', () => {
     browserWindow.show()
   })
 
   browserWindow.webContents.on('did-finish-load', () => {
+    // Set "keep aspect ratio" to last used value
+    if (Settings.settingForKey('keepAspectRatio') === undefined) {
+      Settings.setSettingForKey('keepAspectRatio', true)
+    }
+
+    if (Settings.settingForKey('keepAspectRatio')) {
+      browserWindow.webContents.executeJavaScript(`setKeepAspectRatioSelected(true)`)
+    } else {
+      browserWindow.webContents.executeJavaScript(`setKeepAspectRatioSelected(false)`)
+    }
+
     // Set pixel sizes of layer
     browserWindow.webContents.executeJavaScript(`setPixelWidth('${layerWidth}')`)
     browserWindow.webContents.executeJavaScript(`setPixelHeight('${layerHeight}')`)

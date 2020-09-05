@@ -60,7 +60,7 @@ window.redrawUI = () => {
  * Return the currently selected unit or defaults for the "_none" unit
  */
 getCurrentUnit = () => {
-  if (unit == '_none') {
+  if (unit === '_none') {
     return {
       dpi: 1,
       factor: 1,

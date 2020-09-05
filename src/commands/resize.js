@@ -1,33 +1,17 @@
-var UI = require('sketch/ui')
 import BrowserWindow from 'sketch-module-web-view'
-var Settings = require('sketch/settings')
-var Group = require('sketch/dom').Group
+import { getSelection } from '../utils'
+const Settings = require('sketch/settings')
+const UI = require('sketch/ui')
 
 /**
  * Resize layer command
  */
-export default () => {
-  // Sanity checks
+export default function () {
 
-  var document = require('sketch/dom').getSelectedDocument()
-  if (!document) {
-    UI.message('Please open a document')
-    return
-  }
+  const selection = getSelection()
 
-  var selection = document.selectedLayers
-
-  if (selection.length == 0) {
-    UI.message('Please select a layer')
-    return
-  }
-
-  if (selection.length > 1) {
-    UI.alert(
-      'Only one layer supported',
-      'Currently, Units only supports to resize one layer. You might want to group multiple layers to allow them to be resized by Units'
-    )
-    return
+  if (!selection) {
+    return;
   }
 
   let layerWidth = selection.layers[0].frame.width
@@ -91,7 +75,7 @@ export default () => {
       unit = Settings.settingForKey('defaultUnit')
     }
 
-    if (Settings.settingForKey('lastUnit') && unit == '_last') {
+    if (Settings.settingForKey('lastUnit') && unit === '_last') {
       unit = Settings.settingForKey('lastUnit')
       if (!units.hasOwnProperty(unit)) {
         unit = '_none'

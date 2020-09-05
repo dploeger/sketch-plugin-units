@@ -86,7 +86,7 @@ checkFormValidity = (originalUnitName) => {
     .toArray()
     .reduce((isValid, item) => {
       if (item.id === 'unitName') {
-        if (item.value != originalUnitName && units.hasOwnProperty(item.value)) {
+        if (item.value !== originalUnitName && units.hasOwnProperty(item.value)) {
           isValid = false
           item.setCustomValidity('Name already exists')
         }
@@ -105,6 +105,7 @@ openNewUnitEditor = () => {
   $('#editWindow').modal()
 
   // Remove event triggers on modal hide
+
   $('#editWindow').on('hidden.bs.modal', () => {
     $('#unitEditorOk').off()
   })
@@ -123,8 +124,7 @@ openNewUnitEditor = () => {
 
   $('#unitEditorOk').click(() => {
     // Validate form
-    var isFormValid = checkFormValidity()
-    if (isFormValid === false) {
+    if (!checkFormValidity()) {
       // Mimic a form submit to trigger form validation messages
       $('<input type="submit">')
         .hide()
@@ -178,8 +178,7 @@ openEditUnitEditor = unitRow => {
     })
   $('#unitEditorOk').click(() => {
     // Validate form
-    var isFormValid = checkFormValidity(originalUnitName)
-    if (isFormValid === false) {
+    if (!checkFormValidity(originalUnitName)) {
       // Mimic a form submit to trigger form validation messages
       $('<input type="submit">')
         .hide()

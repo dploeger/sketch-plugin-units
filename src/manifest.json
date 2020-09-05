@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/sketch-hq/SketchAPI/develop/docs/sketch-plugin-manifest-schema.json",
   "name": "Units",
   "author": "Dennis Ploeger <develop@dieploegers.de>",
   "description": "Units",

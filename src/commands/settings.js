@@ -1,11 +1,10 @@
-var UI = require('sketch/ui')
 import BrowserWindow from 'sketch-module-web-view'
-var Settings = require('sketch/settings')
+const Settings = require('sketch/settings')
 
 /**
  * Units plugin settings
  */
-export default () => {
+export default function () {
   // Setup BrowserWindow
 
   const options = {

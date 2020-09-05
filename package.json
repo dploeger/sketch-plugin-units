@@ -25,7 +25,7 @@
     "postinstall": "npm run build && skpm-link"
   },
   "devDependencies": {
-    "@skpm/builder": "^0.5.16"
+    "@skpm/builder": "^0.7.7"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,6 @@
     "jquery-slim": "3.0.0",
     "popper.js-lite": "2.0.0-rc.1",
     "prettier": "1.16.4",
-    "sketch-module-web-view": "^3.2.2"
+    "sketch-module-web-view": "^3.4.1"
   }
 }

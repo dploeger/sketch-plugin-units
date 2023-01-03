@@ -2,6 +2,12 @@
 
 Units is a [Sketch](https://https://sketchapp.com/) plugin for working with print units (inch, cm, mm) in Sketch's pixel world.
 
+## Deprecation notice
+
+I'm not using Sketch anymore and thus have to sadly deprecate this plugin. I'm afraid, it will not get any new updates or fixes.
+
+If somebody likes to adopt it, please check out [issue 26](https://github.com/dploeger/sketch-plugin-units/issues/26).
+
 ## Features
 
 * Calculates the print unit value from the pixel value for width and heights and back
